@@ -1,6 +1,6 @@
 package com.springapps.shop.config;
 
-import com.springapps.shop.service.JWTRequestFilter;
+import com.springapps.shop.service.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ public class JwtSecurityConfig {
     }
 
     @Autowired
-    private JWTRequestFilter jwtRequestFilter;
+    private JwtRequestFilter jwtRequestFilter;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

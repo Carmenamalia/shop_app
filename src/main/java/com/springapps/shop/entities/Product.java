@@ -13,9 +13,11 @@ public class Product {
     private Long id;
 
     private String name;
+
     private Double price;
-    @Column
+
     private Integer stock;
+
     @ManyToOne
     @JsonBackReference("category-product")
     @JoinColumn(name = "category_id")
@@ -24,6 +26,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonManagedReference("wishlistitem-product")
     private List<WishlistItem> wishlistItems;
+
     @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonManagedReference("cartitem-product")
     private List<CartItem> cartItems;
@@ -64,6 +67,22 @@ public class Product {
         this.price = price;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -86,14 +105,6 @@ public class Product {
 
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
     }
 
 

@@ -12,18 +12,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String username;
+
     private String password;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference("user-wishlist")
     private Wishlist wishlist;
 
-    @OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST,CascadeType.MERGE},orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     @JsonManagedReference("cartitem-user")
     private List<CartItem> cartItems;
-    @OneToMany(mappedBy = "user",cascade = {CascadeType.PERSIST,CascadeType.MERGE},orphanRemoval = true)
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     @JsonManagedReference("order-user")
     private List<Order> orders;
+
     @ManyToMany(mappedBy = "users")
     private Set<Role> roles;
 

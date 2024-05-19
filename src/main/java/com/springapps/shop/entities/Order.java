@@ -16,10 +16,13 @@ public class Order {
     private Long id;
 
     private Double totalPrice;
+
     private LocalDateTime createdAt;
+
     @OneToMany(mappedBy = "order",cascade = {CascadeType.PERSIST,CascadeType.MERGE},orphanRemoval = true)
     @JsonManagedReference("orderitem-order")
     List<OrderItem> orderItems;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonBackReference("order-user")

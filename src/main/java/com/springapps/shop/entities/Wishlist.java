@@ -12,14 +12,16 @@ public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToOne
     @JsonBackReference("user-wishlist")
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "wishlist",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToMany(mappedBy = "wishlist", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonManagedReference("wishlistitem-wishlist")
     private List<WishlistItem> wishlistItems;
+
     public Wishlist() {
     }
 

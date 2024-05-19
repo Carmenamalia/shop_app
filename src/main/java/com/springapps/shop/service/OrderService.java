@@ -28,9 +28,13 @@ public class OrderService {
         this.orderRepository = orderRepository;
         this.cartItemRepository = cartItemRepository;
     }
-
+    //Plasam o comanda pentru un utilizator (cu produsele pe care le are in cosul de cumparaturi)
+    //
+    //Endpoint: /orders/add/{userId}
     @Transactional
     public Order addOrderToUser(Long userId) {
+        //gasesc userul dupa id
+        //creez o noua comanda
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("user not found"));
         Order order = new Order();
 
@@ -49,6 +53,7 @@ public class OrderService {
         // user.getOrders().add(order);
         order.setUser(user);
         order.setCreatedAt(LocalDateTime.now());
+        //sterg lista de cartitem-uri dupa id utilizator
         cartItemRepository.deleteAllByUser_Id(userId);
         return orderRepository.save(order);//salvez order-ul
 

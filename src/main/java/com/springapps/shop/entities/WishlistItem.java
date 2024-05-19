@@ -8,6 +8,7 @@ public class WishlistItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     @JsonBackReference("wishlistitem-product")

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
-public class CartItem  {
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +18,9 @@ public class CartItem  {
     @JoinColumn(name = "user_id")
     @JsonBackReference("cartitem-user")
     private User user;
+
     private Integer quantity;
+
     public CartItem() {
     }
 
